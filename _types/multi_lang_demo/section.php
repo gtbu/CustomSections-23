@@ -15,14 +15,14 @@ defined('is_running') or die('Not an entry point...');
  *
  */
 
-$section_lang = self::$i18n['section']['lang'];
+$section_lang = self::$i18n['section']['lang'] ?? 'default value';
 
 /* for debugging show language array in message bar */
 // msg('Section type <em>' . $type .'</em> &rarr; $i18n = ' . pre(self::$i18n));
 
 $section = array();
 $section['values'] = array_merge(array(
-  'heading'       => $section_lang['default_heading'],
+  'heading'       => isset($section_lang['default_heading']),
   'heading_type'  => 'h2',
 ), $sectionCurrentValues );
 
