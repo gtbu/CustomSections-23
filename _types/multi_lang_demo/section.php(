@@ -31,7 +31,7 @@ $section['attributes'] = array(
 );
 
 $section['content']   = '<' . $section['values']['heading_type'] .'>';
-$section['content']  .= $section_lang['heading'] . '(' . $section['values']['heading_type'] . '): ' . $section['values']['heading'];
+$section['content']  .= isset($section_lang['heading']) . '(' . $section['values']['heading_type'] . '): ' . $section['values']['heading'];
 $section['content']  .= '</' . $section['values']['heading_type'] .'>';
 
 $section['gp_label'] = 'i18n Demo';
