@@ -4,7 +4,7 @@ defined('is_running') or die('Not an entry point...');
 
 global $page, $config, $gpLayouts;
 $layout_arr = $gpLayouts[isset($page->TitleInfo['gpLayout']) ?  $page->TitleInfo['gpLayout'] :  $config['gpLayout']];
-$bs4 = strtolower($layout_arr['framework']['name']) == 'bootstrap' &&
+$bs4 = strtolower(isset($layout_arr['framework']['name'])) == 'bootstrap' &&
 	  preg_replace('/[^0-9]/', '', explode('.', $layout_arr['framework']['version'])[0]) == 4;
 
 $section = array(); 
