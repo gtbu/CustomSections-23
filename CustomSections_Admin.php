@@ -10,8 +10,10 @@ Version 1.0b2
 
 defined('is_running') or die('Not an entry point...');
 
-class CustomSections_Admin {
+#[\AllowDynamicProperties]
 
+class CustomSections_Admin {
+  
   static $i18n;
 
 	function __construct(){

@@ -150,8 +150,8 @@ if( !empty($section['values']['start_day']) ){
 
   $date_row = '<div class="single-event-date-row row" data-start-date="' . $start_datetime . '" data-end-date="' . $end_datetime . '">';
 
-  $start_time_html  = !empty($section['values']['start_time']) ? '<span class="single-event-time">' . strftime($lang['time_format'], $start_datetime) . '</span>'  : ''; 
-  $end_time_html    = !empty($section['values']['end_time'])   ? '<span class="single-event-time">' . strftime($lang['time_format'], $end_datetime) . '</span>'    : ''; 
+  $start_time_html  = !empty($section['values']['start_time']) ? '<span class="single-event-time">' . \intltime\strftime($lang['time_format'], $start_datetime) . '</span>'  : ''; 
+  $end_time_html    = !empty($section['values']['end_time'])   ? '<span class="single-event-time">' . \intltime\strftime($lang['time_format'], $end_datetime) . '</span>'    : ''; 
 
   switch( $time_prefixing ){
     case 'at':
@@ -168,7 +168,7 @@ if( !empty($section['values']['start_day']) ){
       $date_row .=  '<div class="col-sm-6 single-event-on">';
       $date_row .=    '<p>';
       $date_row .=      '<span class="single-event-on-day">' . $lang['on_day'] . '</span> ';
-      $date_row .=      '<span class="single-event-day">' . strftime($lang['day_format'], $start_datetime) . '</span>';
+      $date_row .=      '<span class="single-event-day">' . \intltime\strftime($lang['day_format'], $start_datetime) . '</span>';
       $date_row .=    '</p>';
       $date_row .=    '<p>';
       $date_row .=      $start_time_html . $end_time_html;
