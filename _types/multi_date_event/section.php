@@ -21,7 +21,7 @@ $section['values'] = array_merge(array(
   'description'     => 'The annual Typesetter CMS developers conference!', // control_type = ck_editor
   'location_name'   => 'Convention Center', // control_type = text
   'location_link'   => array( 
-                        'url' => 'https://www.typesettercms.com',  // absolute URL, relative URL, mailto, #anchor
+                        'url' => 'https://github.com/gtbu',  // absolute URL, relative URL, mailto, #anchor
                         'target' => '_blank', // _blank, _self
                        ), // control_type = link-field
   'dates'           => array(
@@ -54,13 +54,13 @@ $section['values'] = array_merge(array(
   'use_booking'     => '1', // control_type = checkbox
   'booking_text'    => 'Tickets', // control_type = text
   'booking_link'    => array( 
-                        'url' => 'https://www.typesettercms.com',  // absolute URL, relative URL, mailto, #anchor
+                        'url' => 'https://github.com/gtbu',  // absolute URL, relative URL, mailto, #anchor
                         'target' => '_blank', // _blank, _self
                        ), // control_type = link-field
   /*
   'readmore_text'     => 'Read more', // control_type = text
   'readmore_link'     => array( 
-                        'url' => 'https://www.typesettercms.com/Plugins',  // absolute URL, relative URL, mailto, #anchor
+                        'url' => 'https://github.com/gtbu',  // absolute URL, relative URL, mailto, #anchor
                         'target' => '_blank', // _blank, _self
                        ), // control_type = link-field
   */
@@ -95,7 +95,7 @@ if( !empty($section['values']['location_link']['url']) ){
 global $config;
 $current_lang = $config['language']; // TODO: should be obteined from Multi-Language Manager's page language, if present
 
-// DATE/TIME FORMATTING, see http://php.net/manual/en/function.strftime.php
+// DATE/TIME FORMATTING, see http://php.net/manual/en/function.strftime.php   - replaced by emulator : \intltime\strftime
 $i18n = array(
   'en' => array(
     /* USA, default */
@@ -179,9 +179,8 @@ foreach( $section['values']['dates'] as $key => $date ){
     $date_row .= "\n<!-- ################################################# -->\n";
     $date_row .=   '<div class="row">';
 
-
-    $start_time_html  = !empty($date['start_time']) ? '<span class="multi-date-event-time">' . utf8_encode(strftime($lang['time_format'], $start_datetime)) . '</span>'  : ''; 
-    $end_time_html    = !empty($date['end_time'])   ? '<span class="multi-date-event-time">' . utf8_encode(strftime($lang['time_format'], $end_datetime)) . '</span>'    : ''; 
+    $start_time_html  = !empty($date['start_time']) ? '<span class="multi-date-event-time">' . mb_convert_encoding(\intltime\strftime($lang['time_format'], $start_datetime), 'UTF-8') . '</span>'  : ''; 
+    $end_time_html    = !empty($date['end_time'])   ? '<span class="multi-date-event-time">' . mb_convert_encoding(\intltime\strftime($lang['time_format'], $end_datetime), 'UTF-8') . '</span>'    : ''; 
 
     switch( $time_prefixing ){
       case 'at':
@@ -198,7 +197,7 @@ foreach( $section['values']['dates'] as $key => $date ){
         $date_row .=  '<div class="col-xs-12 multi-date-event-on">';
         $date_row .=    '<p>';
         $date_row .=      '<span class="multi-date-event-on-day">' . $lang['on_day'] . '</span> ';
-        $date_row .=      '<span class="multi-date-event-day">' . utf8_encode(strftime($lang['day_format'], $start_datetime)) . '</span>';
+        $date_row .=      '<span class="multi-date-event-day">' . mb_convert_encoding(\intltime\strftime($lang['day_format'], $start_datetime), 'UTF-8') . '</span>';
         $date_row .=      $start_time_html . $end_time_html;
         $date_row .=    '</p>';
         $date_row .=  '</div>';
@@ -208,14 +207,14 @@ foreach( $section['values']['dates'] as $key => $date ){
         $date_row .=  '<div class="col-xs-12 multi-date-event-from">';
         $date_row .=    '<p>';
         $date_row .=      '<span class="multi-date-event-from-day">' . $lang['from_day'] . '</span> ';
-        $date_row .=      '<span class="multi-date-event-day">' . utf8_encode(strftime($lang['day_format'], $start_datetime)) . '</span>';
+        $date_row .=      '<span class="multi-date-event-day">' . mb_convert_encoding(\intltime\strftime($lang['day_format'], $start_datetime), 'UTF-8') . '</span>';
         $date_row .=      $start_time_html;
         $date_row .=    '</p>';
         $date_row .=  '</div>';
         $date_row .=  '<div class="col-xs-12 multi-date-event-to">';
         $date_row .=    '<p>';
         $date_row .=      '<span class="multi-date-event-to-day">' . $lang['to_day'] . '</span> ';
-        $date_row .=      '<span class="multi-date-event-day">' . utf8_encode(strftime($lang['day_format'], $end_datetime)) . '</span>';
+        $date_row .=      '<span class="multi-date-event-day">' . mb_convert_encoding(\intltime\strftime($lang['day_format'], $start_datetime), 'UTF-8') . '</span>';
         $date_row .=      $end_time_html;
         $date_row .=    '</p>';
         $date_row .=  '</div>';
@@ -276,7 +275,7 @@ $section['always_process_values'] = false;
 // Optional: Admin UI color label. This is solely used in the editor's section manager ('Page' mode)
 $section['gp_color'] = '#002080';
 
-// Optional: Loadable Components needed for rendering section to visitors, see https://github.com/Typesetter/Typesetter/blob/master/include/tool/Output/Combine.php#L111
+// Optional: Loadable Components needed for rendering section to visitors, see https://github.com/gtbu/Typesetter5.2/blob/master/include/tool/Output/Combine.php#L111
 $components = 'fontawesome,'; // comma separated string. If 'colorbox' is included \gp\tool::AddColorBox() will be called
 
 // Ootional: Additional CSS and JS if needed
